@@ -54,7 +54,6 @@
 
     calculatePV(entry: ICashFlow): number {
       const dateDifference = entry.date.diff(this.analysisDate, 'days');
-      console.log(this.analysisDate, entry.date, dateDifference)
       return entry.cashFlow / Math.pow((1 + this.discountRate/100), dateDifference/365);
     }
     

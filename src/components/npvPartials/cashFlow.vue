@@ -11,8 +11,7 @@
 import { Component, Watch, Vue } from 'vue-property-decorator';
 import moment from 'moment';
 import numeral from 'numeral';
-import * as CSV from 'csv-string';
-import * as zeroState from '../../mocks/zeroState.json';
+import zeroState from '../../mocks/zeroState';
 
 // Types
 import ICashFlow from '../../types/ICashFlow';
@@ -37,7 +36,7 @@ export default class cashFlow extends Vue {
           flag = `Error on line ${index+1}, incorrect date format format for value ${entry[0]}.`;
           throw Error;
         }
-        if(!this.isNumber(numeral(entry[1])._value)) {
+        if(!this.isNumber(numeral(entry[1]).value())) {
           flag = `Error on line ${index+1}, incorrect money format format for value ${entry[1]}.`;
           throw Error;
         }
@@ -51,7 +50,15 @@ export default class cashFlow extends Vue {
   }
 
   parseCsv(value: string) {
-    return CSV.parse(value, '\t');
+    if(value) {
+      const lines = value.split('\n');
+
+      if(lines.length) {
+        const parsedLines = lines.map(line => line.split('\t'))
+        return parsedLines;
+      }
+    }
+    return [];
   }
 
   isNumber(value: any) {
@@ -64,7 +71,7 @@ export default class cashFlow extends Vue {
     const emitObj: ICashFlow[] = parsedValue.reduce((acc: any[], item: any) => {
       const entry: ICashFlow = {
         date: moment(item[0], 'M/D/Y'),
-        cashFlow: numeral(item[1])._value,
+        cashFlow: numeral(item[1]).value(),
       }
       acc.push(entry);
       return acc;
