@@ -1,6 +1,6 @@
 {
   "name": "fe-npv",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,10 +10,16 @@
     "deploy": "npm run clear && npm install && npm run build && heroku config:set NODE_ENV=production NPM_CONFIG_PRODUCTION=true --app fe-npv && git push heroku master"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "csv-string": "^3.1.5",
     "express": "^4.16.3",
+    "material-design-icons-iconfont": "^3.0.3",
+    "moment": "^2.22.2",
+    "numeral": "^2.0.6",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^7.0.0"
+    "vue-property-decorator": "^7.0.0",
+    "vuetify": "^1.2.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-typescript": "^3.0.1",
