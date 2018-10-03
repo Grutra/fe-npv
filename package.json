@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "start": "node server.js",
+    "clear": "rm -rf ./dist",
+    "deploy": "npm run clear && heroku config:set NODE_ENV=production --app fe-npv && git push heroku master"
   },
   "dependencies": {
     "vue": "^2.5.17",
