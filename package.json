@@ -7,9 +7,10 @@
     "build": "vue-cli-service build",
     "start": "node server.js",
     "clear": "rm -rf ./dist",
-    "deploy": "npm run clear && heroku config:set NODE_ENV=production --app fe-npv && git push heroku master"
+    "deploy": "npm run clear && npm run build && heroku config:set NODE_ENV=production --app fe-npv && git push heroku master"
   },
   "dependencies": {
+    "express": "^4.16.3",
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0"
